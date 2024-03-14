@@ -2,8 +2,8 @@ package units;
 
 // Разбойник
 public class Robber extends Person {
-    public Robber(String name, int age) {
-        super(name, age, 100, 10, 20, 40, 50, "knife");
+    public Robber(String name, int age, int x, int y) {
+        super(name, age, 100, 10, 20, 40, 50, "knife", x, y);
     }
 
     // атака

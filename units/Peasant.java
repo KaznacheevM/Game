@@ -5,8 +5,8 @@ public class Peasant extends Person {
     private int arrowsNum;
     boolean inGame = true;
 
-    public Peasant(String name, int age) {
-        super(name, age, 20, 0, 0, 20, 20, "nothing");
+    public Peasant(String name, int age, int x, int y) {
+        super(name, age, 20, 0, 0, 20, 20, "nothing", x, y);
     }
 
     // отдать стрелы
