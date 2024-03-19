@@ -1,14 +1,16 @@
 package units;
 
 // Разбойник
-public class Robber extends Person {
-    public Robber(String name, int age, int x, int y) {
-        super(name, age, 100, 10, 20, 40, 50, "knife", x, y);
-    }
+public class Robber extends Infantries {
+    private static final int HEALTH = 100;
+    private static final int POWER = 10;
+    private static final int ARMOR = 20;
+    private static final int ENDURANCE = 40;
+    private static final int GOLD = 50;
+    private static final String WEAPON = "knife";
 
-    // атака
-    public void attack(Person person) {
-        person.health -= super.power;
+    public Robber(String name, int age, int x, int y) {
+        super(name, age, HEALTH, POWER, ARMOR, ENDURANCE, GOLD, WEAPON, x, y);
     }
 
     // украсть золото

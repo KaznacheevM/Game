@@ -1,4 +1,4 @@
-package TeamBuilder;
+package teamBuilder;
 
 import java.util.ArrayList;
 import java.util.Random;

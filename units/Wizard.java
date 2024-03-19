@@ -1,43 +1,27 @@
 package units;
 
 // Волшебник
-public class Wizard extends Person {
-    private int mana;
-    private int healVal;
-    private int healPrice;
-    private int attackPrice;
+public class Wizard extends Magician {
+
+    private static final int HEALTH = 80;
+    private static final int POWER = 30;
+    private static final int ARMOR = 5;
+    private static final int ENDURANCE = 30;
+    private static final int GOLD = 30;
+    private static final String WEAPON = "stick";
+
+    private static final int MANA = 10;
+    private static final int HEAL_VAL = 10;
+    private static final int HEAL_PRICE = 2;
+    private static final int ATTACK_PRICE = 1;
 
     public Wizard(String name, int age, int x, int y) {
-        super(name, age, 80, 30, 5, 30, 30, "stick", x, y);
-        this.mana = 10;
-        this.healPrice = 2;
-        this.attackPrice = 1;
+        super(name, age, HEALTH, POWER, ARMOR, ENDURANCE, GOLD, WEAPON, MANA, HEAL_VAL, HEAL_PRICE, x, y);
     }
 
     // атака
     public void attack(Person person) {
         person.health -= super.power;
-        this.mana -= price("attack");
-    }
-
-    // лечение персонажа
-    public void heal(Person person) {
-        person.health += this.healVal;
-        this.mana -= price("heal");
-    }
-
-    // лечение себя
-    public void heal() {
-        super.health += this.healVal;
-        this.mana -= price("heal");
-    }
-
-    // вспомогательный метод для определения цены в единицах маны
-    private int price(String action) {
-        if (action == "heal")
-            return this.healPrice;
-        else if (action == "attack")
-            return this.attackPrice;
-        return 0;
+        this.mana -= ATTACK_PRICE;
     }
 }

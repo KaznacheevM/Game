@@ -1,6 +1,4 @@
-package Cords;
-
-import units.Person;
+package cords;
 
 public class Position {
     private int x;

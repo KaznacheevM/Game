@@ -1,30 +1,29 @@
 package units;
 
 // Крестьянин
-public class Peasant extends Person {
+public class Peasant extends Civilians {
+    private static final int HEALTH = 20;
+    private static final int POWER = 0;
+    private static final int ARMOR = 0;
+    private static final int ENDURANCE = 20;
+    private static final int GOLD = 20;
+    private static final String WEAPON = "nothing";
+
     private int arrowsNum;
-    boolean inGame = true;
 
     public Peasant(String name, int age, int x, int y) {
-        super(name, age, 20, 0, 0, 20, 20, "nothing", x, y);
+        super(name, age, HEALTH, POWER, ARMOR, ENDURANCE, GOLD, WEAPON, x, y);
+        this.arrowsNum = 10;
     }
 
     // отдать стрелы
     public void giveArrows(int val) {
         this.arrowsNum -= val;
-        if (!isInGame()) {
-            inGame = false;
-        }
     }
 
     // продать оружие
     public void sellWeapon(Person person, String weapon, int price) {
         person.weapon = weapon;
         super.gold += price;
-    }
-
-    // вспомогательный метод проверки нличия стрел
-    private boolean isInGame() {
-        return this.arrowsNum == 0 ? false : true;
     }
 }

@@ -1,29 +1,17 @@
 package units;
 
-import java.util.ArrayList;
-
-import Cords.Position;
-
 // Снайпер
-public class Sniper extends Person {
-    private int bulletsNum;
-    boolean inGame = true;
+public class Sniper extends Shooter {
+    private static final int HEALTH = 60;
+    private static final int POWER = 40;
+    private static final int ARMOR = 20;
+    private static final int ENDURANCE = 30;
+    private static final int GOLD = 40;
+    private static final String WEAPON = "bow";
+    private static final int ARROWS_NUM = 10;
+    private static final int DAMAGE = 2;
 
     public Sniper(String name, int age, int x, int y) {
-        super(name, age, 60, 40, 20, 30, 40, "gun", x, y);
-    }
-
-    // атака
-    public void attack(Person person) {
-        person.health -= super.power;
-        this.bulletsNum -= 1;
-        if (!isInGame()) {
-            inGame = false;
-        }
-    }
-
-    // вспомогательный метод проверки нличия стрел
-    private boolean isInGame() {
-        return this.bulletsNum == 0 ? false : true;
+        super(name, age, HEALTH, POWER, ARMOR, ENDURANCE, GOLD, WEAPON, ARROWS_NUM, DAMAGE, x, y);
     }
 }
