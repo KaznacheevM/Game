@@ -15,14 +15,9 @@ public abstract class Shooter extends Person {
     }
 
     // атака
-    public void attack(Person person) {
+    protected void attack(Person person) {
         person.health -= this.damage;
         this.arrowsNum--;
-    }
-
-    // проверка жизней
-    protected boolean isAlive() {
-        return super.health > 0;
     }
 
     // проверка стрел
@@ -31,7 +26,7 @@ public abstract class Shooter extends Person {
     }
 
     @Override
-    public void step(ArrayList<Person> enemies) {
+    public void step(ArrayList<Person> enemies, ArrayList<Person> friends) {
         if (this.isAlive() && this.hasArrows()) {
             Person enemy = this.findNearestEnemy(enemies);
             this.attack(enemy);

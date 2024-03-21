@@ -30,6 +30,11 @@ public abstract class Person implements GameInterface {
         this.initiative = initiative;
     }
 
+    // проверка жизней
+    protected boolean isAlive() {
+        return this.health > 0;
+    }
+
     // поиск ближайшего противника
     public Person findNearestEnemy(ArrayList<Person> enemies) {
         double minDistance = Double.MAX_VALUE;

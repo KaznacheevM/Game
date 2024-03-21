@@ -28,6 +28,13 @@
 В мэйне сделать так, чтобы сначала делали ход персонажи с наивысшей инициативой из обеих комманд а с наименьшей в конце.
 */
 
+/*
+Реализовать метод step() пехоты. Первое проверяем живы ли мы, потом ищем ближайшего противника.
+Если противник в соседней клетке, наносим повреждение. Иначе двигаемся в сторну противника.
+Алгоритм движения, если dX>dY двигаемся по x иначе по y. dX и dY (разница наших координат и ближайшего противника)
+знаковые, от знака зависит направление.
+*/
+
 import java.util.ArrayList;
 
 import teamBuilder.TeamBuilder;
@@ -46,13 +53,17 @@ public class Main {
         sorted.addAll(darkTeam);
         sorted.sort(new TeamsSorter());
 
+        System.out.println("\n" + hollyTeam + "\n" + darkTeam + "\n");
+
         for (Person person : sorted) {
             System.out.println(person + " ходит");
             if (hollyTeam.contains(person)) {
-                person.step(darkTeam);
+                person.step(darkTeam, hollyTeam);
             } else if (darkTeam.contains(person)) {
-                person.step(hollyTeam);
+                person.step(hollyTeam, darkTeam);
             }
         }
+
+        System.out.println("\n" + hollyTeam + "\n" + darkTeam + "\n");
     }
 }
