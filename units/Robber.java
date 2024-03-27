@@ -24,4 +24,15 @@ public class Robber extends Infantries {
         super.weapon = person.weapon;
         person.weapon = "nothing";
     }
+
+    @Override
+    public String getInfo() {
+        return "Разбойник " + history;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Разбойник %s H: %d E: %d A: %d D: %d", this.name, this.health, this.endurance,
+                this.armor, this.power);
+    }
 }

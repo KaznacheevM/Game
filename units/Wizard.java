@@ -24,4 +24,15 @@ public class Wizard extends Magician {
         person.health -= super.power;
         this.mana -= ATTACK_PRICE;
     }
+
+    @Override
+    public String getInfo() {
+        return "Волшебник " + history;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Волшебник %s H: %d E: %d A: %d D: %d", this.name, this.health, this.endurance,
+                this.armor, this.power);
+    }
 }

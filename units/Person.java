@@ -1,6 +1,7 @@
 package units;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import cords.Position;
 
@@ -15,6 +16,8 @@ public abstract class Person implements GameInterface {
     protected String weapon; // оружие
     protected int initiative; // инициатива
     protected Position position; // позиция
+
+    protected String history;
 
     // конструктор
     protected Person(String name, int age, int health, int power, int armor, int endurance, int gold, String weapon, int initiative, int x, int y) {
@@ -31,7 +34,7 @@ public abstract class Person implements GameInterface {
     }
 
     // проверка жизней
-    protected boolean isAlive() {
+    public boolean isAlive() {
         return this.health > 0;
     }
 
@@ -40,20 +43,31 @@ public abstract class Person implements GameInterface {
         double minDistance = Double.MAX_VALUE;
         Person nearestEnemy = null;
         for (Person enemy : enemies) {
-            double distance = this.position.getDistance(enemy.position);
-            if (distance < minDistance) {
-                minDistance = distance;
-                nearestEnemy = enemy;
+            if (enemy.isAlive()) {
+                double distance = this.position.getDistance(enemy.position);
+                if (distance < minDistance) {
+                    minDistance = distance;
+                    nearestEnemy = enemy;
+                }
             }
         }
-        return nearestEnemy;
+
+        if (!Objects.isNull(nearestEnemy)) {
+            return nearestEnemy;
+        } else {
+            return enemies.getFirst();
+        }
     }
 
-    // конвертация в строку
-    @Override
-    public String toString() {
-        return String.format("%s >>> %s (%d): (%d, %d)", this.getClass().getSimpleName(), this.name, this.age,
-                this.position.getX(), this.position.getY());
+    public Position getPosition() {
+        return this.position;
     }
 
+    public int[] getCords() {
+        return new int[] {position.getY() + 1, position.getX() + 1};
+    }
+
+    public int getHealth() {
+        return this.health;
+    }
 }

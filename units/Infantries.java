@@ -49,6 +49,7 @@ public abstract class Infantries extends Person {
 
             if (Math.abs(dX) <= 1 && Math.abs(dY) <= 1) {
                 this.attack(enemy);
+                history = "атаковал " + enemy.name + " (" + enemy.getInfo().split(" ")[0] + ")";
                 return;
             }
 
@@ -56,9 +57,11 @@ public abstract class Infantries extends Person {
             if (Math.abs(dX) > Math.abs(dY)) {
                 newPos = new Position(this.position.getX() + Integer.signum(dX), this.position.getY());
                 this.move(newPos, friends);
+                history = "продвинулся";
             } else {
                 newPos = new Position(this.position.getX(), this.position.getY() + Integer.signum(dY));
                 this.move(newPos, friends);
+                history = "продвинулся";
             }
         }
     }

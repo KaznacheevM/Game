@@ -26,4 +26,15 @@ public class Peasant extends Civilians {
         person.weapon = weapon;
         super.gold += price;
     }
+
+    @Override
+    public String getInfo() {
+        return "Крестьянин " + history;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Крестьянин %s H: %d E: %d A: %d D: %d", this.name, this.health, this.endurance,
+                this.armor, 0);
+    }
 }

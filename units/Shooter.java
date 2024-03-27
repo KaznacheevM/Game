@@ -30,6 +30,7 @@ public abstract class Shooter extends Person {
         if (this.isAlive() && this.hasArrows()) {
             Person enemy = this.findNearestEnemy(enemies);
             this.attack(enemy);
+            history = "атаковал " + enemy.name + " (" + enemy.getInfo().split(" ")[0] + ")";
         }
     }
 }

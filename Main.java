@@ -35,7 +35,15 @@
 знаковые, от знака зависит направление.
 */
 
+/*
+Добавить в проект классы View и AnsiColors. Доработать проект так, чтобы выводилось состаяние в консоль.
+Если в одной из комманд погибли все, приложение закрывается с поздравлением победившей команды.
+Добавить в интерфейс метод getInfo() в котором хранится название персонажа,
+что он сделал в этот ход(выстрелил, вылечил, сходил), и с ком он это сделал!)
+*/
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import teamBuilder.TeamBuilder;
 import units.*;
@@ -53,17 +61,38 @@ public class Main {
         sorted.addAll(darkTeam);
         sorted.sort(new TeamsSorter());
 
-        System.out.println("\n" + hollyTeam + "\n" + darkTeam + "\n");
+        Scanner in = new Scanner(System.in);
 
-        for (Person person : sorted) {
-            System.out.println(person + " ходит");
-            if (hollyTeam.contains(person)) {
-                person.step(darkTeam, hollyTeam);
-            } else if (darkTeam.contains(person)) {
-                person.step(hollyTeam, darkTeam);
+        while (true) {
+            View.view();
+            for (Person person : sorted) {
+                if (hollyTeam.contains(person)) {
+                    person.step(darkTeam, hollyTeam);
+                } else if (darkTeam.contains(person)) {
+                    person.step(hollyTeam, darkTeam);
+                }
+            }
+
+            in.nextLine();
+            if (isEmpty(hollyTeam)) {
+                View.view();
+                System.out.println("Победила тёмная команда");
+                break;
+            }
+            if (isEmpty(darkTeam)) {
+                View.view();
+                System.out.println("Победила светлая команда");
+                break;
             }
         }
-
-        System.out.println("\n" + hollyTeam + "\n" + darkTeam + "\n");
+    }
+    
+    private static boolean isEmpty(ArrayList<Person> team) {
+        for (Person person : team) {
+            if (person.isAlive()) {
+                return false;
+            }
+        }
+        return true;
     }
 }
